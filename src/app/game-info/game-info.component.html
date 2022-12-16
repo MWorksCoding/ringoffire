@@ -1,7 +1,7 @@
 <mat-card>
-    <mat-card-header class="card-header" *ngIf="game.players.length == 0">{{ card ? title: 'Please add a player' }}</mat-card-header>
-    <mat-card-header class="card-header" *ngIf="game.players.length == 1">{{ card ? title: 'Please add a another player' }}</mat-card-header>
-    <mat-card-header class="card-header" *ngIf="game.players.length > 1">{{ card ? title: 'Please draw a card' }}</mat-card-header>
+    <mat-card-header class="card-header" *ngIf="this.game.players.length == 0">{{ card ? title: 'Please add a player' }}</mat-card-header>
+    <mat-card-header class="card-header" *ngIf="this.game.players.length == 1">{{ card ? title: 'Please add a another player' }}</mat-card-header>
+    <mat-card-header class="card-header" *ngIf="this.game.players.length > 1">{{ card ? title: 'Please draw a card' }}</mat-card-header>
     <!-- If-else-Abfrage: wenn die Variable card existiert dann soll der Titel angezeigt werden, ansonsten soll angezeigt werden "Please draw a card" -->
    
     <mat-card-content class="card-content" *ngIf="game.players.length == 0">{{ card ? description: 'Click on the puple button to add a new player' }}</mat-card-content>

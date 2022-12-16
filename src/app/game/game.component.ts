@@ -12,11 +12,13 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game;
+  playerCount: number;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
+    this.playerCount = this.game.players.length;
   }
 
   newGame() {
@@ -25,7 +27,7 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation && this.game.players.length >= 1) { // wird können nur alle 1500ms auf den Kartenstapel drücken, sonst ist die If-Bedingung = false
+    if (!this.pickCardAnimation && this.game.players.length > 1) { // wird können nur alle 1500ms auf den Kartenstapel drücken, sonst ist die If-Bedingung = false
       this.currentCard = this.game.stack.pop(); // wir greifen auf das Array zu, mit pop() nehmen wir den letzten Wert aus unserem Array, gleichzeitig wird es aus dem Array entfernt
       console.log(this.currentCard);
       this.pickCardAnimation = true;

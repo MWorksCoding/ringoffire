@@ -20,6 +20,8 @@ export class GameInfoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.game = new Game();
     this.playerCount = this.game.players.length;
+    // debugger;
+    console.log(this.game.players.length)
   }
 
   cardAction = [
@@ -45,5 +47,9 @@ export class GameInfoComponent implements OnInit, OnChanges {
       this.title = this.cardAction[cardNumber - 1].title; //titel wird aus dem Array oben geholt, Array fängt immer bei 0 a - die Karten jedoch bei 1, deswegen wird eine Zahl abgezogen
       this.description = this.cardAction[cardNumber - 1].description; // wie oben
     }
+
+    // if(this.playerCount == 0)
+    // console.log(this.game.players.length)
+    // this.title = 'Please add a another player';
   }
 }
