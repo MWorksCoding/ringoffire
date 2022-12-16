@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add new player</h1>
+<div mat-dialog-content>
+    <p>Please enter the name of a player.</p>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name">
+        <!-- alles was sich im input-Feld ändert, änder sich auch in der Variablen -->
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Abort</button>
+    <button mat-button [disabled]="name.length == 0" [mat-dialog-close]="name" cdkFocusInitial>Ok</button>
+    <!-- [disabled]="name.length == 0" : der Button ist erst anklickbar, wenn man mehr als ein Zeichen eingibt -->
+</div>

@@ -1,0 +1,35 @@
+<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 100)}" [name]="player" [playerActive]="i == game.currentPlayer" class="player-position"></app-player> 
+<!-- die Namen aus dem Array game.players (aus game.ts) werden nun eingefügt -->
+<!-- [name]="player" = input variable, die wir der Komponente hinzufügen -->
+
+
+<div class="field">
+    <div class="field-bg">
+    </div>
+    <div class="card-stack">
+        <!-- CARD STACK -->
+        <img [ngStyle]="{'right.px': i * 5}" *ngFor="let c of [0, 1, 2, 3]; let i = index;"
+            src="assets/img/cards/card_cover.png">
+        <!-- for-Schleife einbinden mit *ngFor() um Karten mehrfach anzeigen zu lassen, es ist egal was im Array steht, hauptsache es sind 5 Elemente -->
+        <!-- styleProperty [ngStyle]="{'right.px': i * 5}" kann zu dem element zugefügt werden, wie bei einer CSS klasse, die Karte kann um 5px verschoben werden  -->
+        <img (click)="takeCard()" class="top-card" style="right: 25px" src="assets/img/cards/card_cover.png">
+        <!-- [class.pick-card]="pickCardAnimation": wenn die Variable pickCardAnimation = true ist, dann soll die Klasse pick-card angezeigt werden -->
+
+        <!-- STACK FOr PLAYED CARDS -->
+        <img *ngFor="let card of game.playedCard" src="assets/img/cards/{{ card }}.png" class="played-card">
+        <!-- neue Variable = gespielte Karte-->
+
+
+                <!-- CURRENT CARD ANIMATION -->
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px"
+            src="assets/img/cards/{{ currentCard }}.png">
+        <!-- wir lassen die aufgedeckte Karte an der gleichen Position anzeigen; pickCardAnimation = die Karte, die oben liegt anzuzeigen -->
+        <!-- wir lassen die Karte anzeigen = Variable -->
+    </div>
+</div>
+
+<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+
+<button mat-fab color="primary" (click)="openDialog()" class="btn-add">
+    <mat-icon>add</mat-icon>
+  </button>

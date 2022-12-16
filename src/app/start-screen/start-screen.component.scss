@@ -1,0 +1,45 @@
+.start-screen {
+    background-color: #404040;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+        height: 100vh;
+    }
+}
+
+.start-label-box {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+
+    img {
+        width: 45vw;
+        height: auto;
+        border: 1px solid black;
+        border-radius: 12px;
+    }
+    &:hover {
+        transform: scale(1.05);
+        filter:brightness(1.05);
+        cursor: pointer;
+    }
+
+    p {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 100px;
+    }
+}
