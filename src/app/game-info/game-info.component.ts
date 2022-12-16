@@ -11,12 +11,15 @@ export class GameInfoComponent implements OnInit, OnChanges {
   title: string = '';
   description: string = '';
   @Input() card: string; //muss zuerst importiert werden, um es in .html einzubinden
-  @Input() players: string; //muss zuerst importiert werden, um es in .html einzubinden
+  // @Input() players: string; //muss zuerst importiert werden, um es in .html einzubinden
+  playerCount: number;
   game: Game;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.game = new Game();
+    this.playerCount = this.game.players.length;
   }
 
   cardAction = [
