@@ -23,3 +23,9 @@
 .player-active {
     background-color: greenyellow !important;
 }
+
+@media(max-width:800px){
+    .player{
+        width: 180px;
+    }
+}

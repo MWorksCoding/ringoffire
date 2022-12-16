@@ -1,5 +1,5 @@
 .start-screen {
-    background-color: #404040;
+    background-image: radial-gradient(#e0dddd 60%, black 75% );
     width: 100vw;
     height: 100vh;
     max-width: 100%;
@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    object-fit: cover;
 
     img {
         height: 100vh;
@@ -41,5 +42,21 @@
         left: 0;
         right: 0;
         font-size: 100px;
+        &:hover {
+            color: red;
+        }
+    }
+}
+
+@media(max-width:890px){
+    p {
+        font-size: 60px !important;
+    }
+}
+
+
+@media(max-width:500px){
+    p {
+        font-size: 40px !important;
     }
 }

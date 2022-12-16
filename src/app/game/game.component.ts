@@ -12,13 +12,11 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game;
-  playerCount: number;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
-    this.playerCount = this.game.players.length;
   }
 
   newGame() {
