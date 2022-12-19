@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card id="mat-card">
     <mat-card-header class="card-header" *ngIf="playerCount == 0">{{ card ? title: 'Please add a player' }}</mat-card-header>
     <mat-card-header class="card-header" *ngIf="playerCount == 1">{{ card ? title: 'Please add a another player' }}</mat-card-header>
     <mat-card-header class="card-header" *ngIf="playerCount > 1">{{ card ? title: 'Please draw a card' }}</mat-card-header>

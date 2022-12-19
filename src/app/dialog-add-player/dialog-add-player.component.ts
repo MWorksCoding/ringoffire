@@ -8,10 +8,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogAddPlayerComponent implements OnInit {
   name: string = '';
+  
   constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>) { }
+
   ngOnInit(): void {
   }
-  onNoClick(): void {
+
+  onNoClick() {
     this.dialogRef.close();
   }
 }

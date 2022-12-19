@@ -7,3 +7,18 @@
 .card-content {
     font-size: 22px;
 }
+
+.mat-card-border{
+    border: red 2px solid !important;
+}
+
+@media (max-width: 1000px) {
+    .card-header {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .card-content {
+        font-size: 18px;
+    }
+}

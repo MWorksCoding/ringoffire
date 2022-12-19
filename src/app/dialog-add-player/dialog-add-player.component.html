@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>Add new player</h1>
 <div mat-dialog-content>
-    <p>Please enter the name of a player.</p>
+    <p>Please enter the name of a player <br> (max. 10 letters).</p>
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="name">
+        <input matInput [(ngModel)]="name" type="text" maxlength=10>
         <!-- alles was sich im input-Feld ändert, änder sich auch in der Variablen -->
     </mat-form-field>
 </div>

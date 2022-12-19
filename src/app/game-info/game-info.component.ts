@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Game } from 'src/models/game';
 
 @Component({
   selector: 'app-game-info',
@@ -13,7 +12,6 @@ export class GameInfoComponent implements OnInit, OnChanges {
   @Input() card: string; //muss zuerst importiert werden, um es in .html einzubinden
   // @Input() players: string; //muss zuerst importiert werden, um es in .html einzubinden
   @Input() playerCount: number;
-  // game: Game;
 
   constructor() { }
 

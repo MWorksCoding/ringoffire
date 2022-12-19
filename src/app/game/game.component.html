@@ -1,4 +1,5 @@
-<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 100 + (i * 100)}" [name]="player" [playerActive]="i == game.currentPlayer" class="player-position"></app-player> 
+<app-player *ngFor="let player of game.players; let i = index;" [ngStyle]="{'top.px': 25 + (i * 80)}" [name]="player"
+    [playerActive]="i == game.currentPlayer" class="player-position"></app-player>
 <!-- die Namen aus dem Array game.players (aus game.ts) werden nun eingefügt -->
 <!-- [name]="player" = input variable, die wir der Komponente hinzufügen -->
 
@@ -20,7 +21,7 @@
         <!-- neue Variable = gespielte Karte-->
 
 
-                <!-- CURRENT CARD ANIMATION -->
+        <!-- CURRENT CARD ANIMATION -->
         <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right: 25px"
             src="assets/img/cards/{{ currentCard }}.png">
         <!-- wir lassen die aufgedeckte Karte an der gleichen Position anzeigen; pickCardAnimation = die Karte, die oben liegt anzuzeigen -->
@@ -32,4 +33,10 @@
 
 <button mat-fab color="primary" (click)="openDialog()" class="btn-add">
     <mat-icon>add</mat-icon>
-  </button>
+</button>
+
+<div class="confirm-max-player d-none" id="confirm-max-player">
+    <div class="position-button">
+        <button class="confirm-max-player-button" (click)="backToGameScreen()">the maximum number of players is 5</button>
+    </div>
+</div>

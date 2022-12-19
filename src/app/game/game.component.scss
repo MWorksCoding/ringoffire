@@ -74,7 +74,7 @@
 .player-position {
     position: absolute;
     right: 0;
-
+    z-index: 1;
 }
 
 .btn-add {
@@ -90,32 +90,83 @@
     right: 100px;
 }
 
+.confirm-max-player {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: brightness(50%);
+    overflow: auto;
+    opacity: 1;
+    z-index: 1;
+}
 
-@media screen and (max-width:800px) {
-    .pick-card {
-        animation: pick-card-animation-respnsive 1.0 ease-in-out !important;
+.d-none {
+    display: none;
+}
+
+.position-button {
+    display: flex;
+}
+
+.confirm-max-player-button {
+    width: 300px;
+    height: 80px;
+    background: #454545;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #FFFFFF;
+    position: relative;
+    animation-name: confirm-max-player-button 1.0 forwards;
+
+    &:hover {
+        background: red;
+    }
+}
+
+@keyframes confirm-max-player-button {
+    from {
+        top: 700px;
     }
 
-    @keyframes pick-card-animation-respnsive {
+    to {
+        top: 0px;
+    }
+}
+
+@media screen and (max-width:800px) {
+
+    .pick-card {
+        animation: pick-card-animation-responsive 1.0 ease-in-out;
+        transform: scale(1.3) translateY(-190px) rotate(-10deg);
+    }
+
+    @keyframes pick-card-animation-responsive {
         0% {
             transform: scale(1);
         }
 
-        40% {
+        30% {
             transform: scale(1.4);
         }
 
-        50% {
+        60% {
             transform: scale(1.4);
         }
 
         100% {
-            transform: scale(1.3) translateY(-180px) rotate(-10deg);
+            transform: scale(1.3) translateY(-190px) rotate(-10deg);
         }
     }
 
     .played-card {
-        transform: scale(1.3) translateY(-180px) rotate(-10deg);
+        transform: scale(1.3) translateY(-190px) rotate(-10deg);
+        right: 25px;
     }
 
     .pin-bottom {
@@ -125,5 +176,20 @@
 
     .btn-add {
         bottom: 150px;
+    }
+
+    .pin-bottom {
+        bottom: 20px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .player-position {
+        position: absolute;
+        top: 0px;
+    }
+
+    .pin-bottom {
+        bottom: 12px;
     }
 }
