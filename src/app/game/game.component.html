@@ -37,6 +37,15 @@
 
 <div class="confirm-max-player d-none" id="confirm-max-player">
     <div class="position-button">
-        <button class="confirm-max-player-button" (click)="backToGameScreen()">the maximum number of players is 5</button>
+        <button class="confirm-max-player-button" (click)="backToGameScreen()">the maximum number of players is
+            5</button>
+    </div>
+</div>
+
+<div *ngIf="gameOver" class="gameover">
+    <div class="gameover-position" (click)="restartGame()">
+        <p>Game over</p>
+        <img src="./assets/img/startbox.jpg">
+
     </div>
 </div>

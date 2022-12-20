@@ -47,6 +47,7 @@
     transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
 }
 
+
 // bei keyframes kein important verwenden, sonst funktioniert es nicht!
 @keyframes pick-card-animation {
     0% {
@@ -139,6 +140,56 @@
     }
 }
 
+.gameover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: brightness(50%);
+    z-index: 1;
+}
+
+.gameover-position {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transition: 0.3s ease-in-out;
+
+    img {
+        width: 45vw;
+        height: auto;
+        border: 1px solid black;
+        border-radius: 12px;
+    }
+    &:hover {
+        transform: scale(1.05);
+        filter:brightness(1.05);
+        cursor: pointer;
+    }
+
+    p {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 60px;
+        color: white;
+        text-shadow: 5px 3px 4px rgb(18, 18, 18);
+        &:hover {
+            color: red;
+        }
+    }
+}
+
+
 @media screen and (max-width:800px) {
 
     .pick-card {
@@ -181,6 +232,16 @@
     .pin-bottom {
         bottom: 20px;
     }
+
+
+    .gameover-position {    
+        img {
+            width: 60vw;
+        }
+        p {
+            font-size: 55px;
+        }
+    }
 }
 
 @media screen and (max-width:500px) {
@@ -191,5 +252,14 @@
 
     .pin-bottom {
         bottom: 12px;
+    }
+
+    .gameover-position {    
+        img {
+            width: 80vw;
+        }
+        p {
+            font-size: 50px;
+        }
     }
 }

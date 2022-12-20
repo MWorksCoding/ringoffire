@@ -40,7 +40,7 @@ export class GameInfoComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void { //void gibt nur etwas aus und gibt nichts zurück
     if (this.card) { // das ganze erst ausführen, wenn die Karte existiert
-      console.log('Current card is:', this.card);
+      // console.log('Current card is:', this.card);
       let cardNumber = +this.card.split('_')[1]; // splitten an der stelle mit dem "_"; string lässt sich in eine Number umwandelt, wenn man ein "+" davor setzt.
       this.title = this.cardAction[cardNumber - 1].title; //titel wird aus dem Array oben geholt, Array fängt immer bei 0 a - die Karten jedoch bei 1, deswegen wird eine Zahl abgezogen
       this.description = this.cardAction[cardNumber - 1].description; // wie oben
