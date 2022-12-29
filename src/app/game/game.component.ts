@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; //ok
+import { ActivatedRoute } from '@angular/router'; // letzten Stand aus der gespeicherten ID abrufen
 
 @Component({
   selector: 'app-game',
@@ -9,15 +11,29 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  currentCard: string = '';
   game: Game;
   gameOver = false;
+  gameId: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor( private router: ActivatedRoute, private firestore: AngularFirestore , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
+    this.router.params.subscribe((params) => { // aktuelles Spiel aus der Datenbank laden
+      console.log(params); // ID auslesen, wir brauchen erst die ID, dann soll das ganze erst im Firestore aboniert werden
+      this.gameId = params['id'];
+      this.firestore.collection('games').doc(params['id']).valueChanges().subscribe((game: any) => { //collection = angelegte Sammlung "games" von "https://console.firebase.google.com" für das Projekt; subsrice = abonieren
+        console.log('Game update', game);
+        this.game.currentPlayer = game.currentPlayer; // aktuelles Spiel aus der Datenbank laden
+        this.game.playedCard = game.playedCard; // aktuelles Spiel aus der Datenbank laden
+        this.game.players = game.players; // aktuelles Spiel aus der Datenbank laden
+        this.game.stack = game.stack; // aktuelles Spiel aus der Datenbank laden
+        this.game.pickCardAnimation = game.pickCardAnimation; // aktuelles Spiel aus der Datenbank laden
+        this.game.currentCard = game.currentCard; // aktuelles Spiel aus der Datenbank laden
+
+      });
+    });
+
   }
 
   newGame() {
@@ -35,17 +51,20 @@ export class GameComponent implements OnInit {
       if (this.game.players.length <= 1) {
         this.showHint();
       }
-      if (!this.pickCardAnimation && this.game.players.length > 1) { // wird können nur alle 1500ms auf den Kartenstapel drücken, sonst ist die If-Bedingung = false
-        this.currentCard = this.game.stack.pop(); // wir greifen auf das Array zu, mit pop() nehmen wir den letzten Wert aus unserem Array, gleichzeitig wird es aus dem Array entfernt
+      if (!this.game.pickCardAnimation && this.game.players.length > 1) { // wird können nur alle 1500ms auf den Kartenstapel drücken, sonst ist die If-Bedingung = false
+        this.game.currentCard = this.game.stack.pop(); // wir greifen auf das Array zu, mit pop() nehmen wir den letzten Wert aus unserem Array, gleichzeitig wird es aus dem Array entfernt
         // console.log(this.currentCard);
-        this.pickCardAnimation = true;
+
+        this.game.pickCardAnimation = true;
         this.game.currentPlayer++; // nächster Spieler wird ausgewählt
         this.game.currentPlayer = this.game.currentPlayer % this.game.players.length; // Modulu = Restoperator: z.B. 3 / 3 = 1 ; REST = 0
         // console.log('New card:' + this.currentCard);
         // console.log(this.game);
+        this.saveGame();
         setTimeout(() => { // Animation soll sich wiederholen und die Karte soll entfernt werden (landet wieder im Stapel)
-          this.game.playedCard.push(this.currentCard); // erst wenn die Animation fertig ist, wird das Array mit playedCard erweitert
-          this.pickCardAnimation = false;
+          this.game.playedCard.push(this.game.currentCard); // erst wenn die Animation fertig ist, wird das Array mit playedCard erweitert
+          this.game.pickCardAnimation = false;
+          this.saveGame();
         }, 1000);
       }
     }
@@ -63,6 +82,11 @@ export class GameComponent implements OnInit {
       }
     });
   }
+
+  saveGame() {
+    this.firestore.collection('games').doc(this.gameId).update(this.game.toJSON());
+  }
+
 
   showMaxPlayerInfo() {
     document.getElementById(`confirm-max-player`).classList.remove(`d-none`);

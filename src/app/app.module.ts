@@ -15,6 +15,15 @@ import { FormsModule } from '@angular/forms';
 import { GameInfoComponent } from './game-info/game-info.component';
 import { MatCardModule } from '@angular/material/card';
 
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app'; //ok
+import { environment } from '../environments/environment'; //ok
+import { provideDatabase,getDatabase } from '@angular/fire/database'; //ok 
+import { provideFirestore,getFirestore } from '@angular/fire/firestore'; //ok
+import { provideAuth,getAuth } from '@angular/fire/auth'; //o
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +42,14 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatCardModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)), //ok
+    provideFirestore(() => getFirestore()), //ok
+    provideDatabase(() => getDatabase()), //ok
+    provideAuth(() => getAuth()), //ok
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [], 
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
